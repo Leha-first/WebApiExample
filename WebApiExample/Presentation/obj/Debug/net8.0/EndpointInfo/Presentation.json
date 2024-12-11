@@ -1,0 +1,240 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Development",
+    "description": "Пример реализации web api",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/grade/GetGradesByProductIdAsync": {
+      "get": {
+        "tags": [
+          "grade"
+        ],
+        "summary": "Получение оценок по идентификатору продукта с пагинацией и сортировкой",
+        "description": "\nGetGradesByProductIdAsync",
+        "parameters": [
+          {
+            "name": "ProductId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortingDirection",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/grade/GetAverageGradeByProductIdAsync": {
+      "get": {
+        "tags": [
+          "grade"
+        ],
+        "summary": "Получение средней оценки по продукту с пагинацией и сортировкой",
+        "description": "\nGetGradesByProductIdAsync",
+        "parameters": [
+          {
+            "name": "ProductId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortingDirection",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/grade/GetGradesByUserIdAsync/{userId}": {
+      "get": {
+        "tags": [
+          "grade"
+        ],
+        "summary": "Получение оценок по идентификатору пользователя",
+        "description": "\nGetGradesByProductIdAsync/00000000-0000-0000-0000-000000000000",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/grade/CreateGradeAsync": {
+      "post": {
+        "tags": [
+          "grade"
+        ],
+        "summary": "Создание оценки пользователем",
+        "description": "\nGetGradesByProductIdAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Grade"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/grade/UpdateGradeAsync": {
+      "put": {
+        "tags": [
+          "grade"
+        ],
+        "summary": "Редактирование оценки пользователем",
+        "description": "\n UpdateGradeAsync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Grade"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/grade/DeleteGradeAsync/{gradeId}": {
+      "delete": {
+        "tags": [
+          "grade"
+        ],
+        "summary": "Удаление оценки по идентификатору",
+        "description": "\n DeleteGradeAsync/00000000-0000-0000-0000-000000000000",
+        "parameters": [
+          {
+            "name": "gradeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Grade": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "review": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+﻿version: '3.4'  
+  
+services:  
+  presentation:
+    container_name: presentation
+    image:  ${DOCKER_REGISTRY}gradeswebapi  
+    build:  
+      context: .  
+      dockerfile: ../Presentation/Dockerfile  
+
+  sqlite-container:
+    container_name: sqlite-container
+    image: sqlite:latest
+    volumes:
+      - ./database:/data
+    restart: always
+
+volumes:
+  sqlite_data:
